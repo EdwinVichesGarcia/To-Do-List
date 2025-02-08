@@ -10,7 +10,7 @@ function addTask(){
         li.innerHTML = inputBox.value;
         listContainer.appendChild(li)
         let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
+        span.innerHTML = "\u00d7"; //hard code "X" 
         li.appendChild(span);
     }
     inputBox.value = "";
@@ -19,7 +19,7 @@ function addTask(){
 
 //function to click on the task once completed
 listContainer.addEventListener("click", function(e){
-    if(e.target.tagName === "LI"){
+    if(e.target.tagName === "LI"){  //Check is there an "li" tag
         e.target.classList.toggle("checked");
         saveData();
     } else if (e.target.tagName === "SPAN"){
@@ -28,6 +28,14 @@ listContainer.addEventListener("click", function(e){
     }
 }, false)
 
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") { // Check if the key pressed is "Enter"
+        addTask(); // Call  existing function
+        saveData();
+    }
+
+});
 
 //save data into the local storage
 function saveData(){
